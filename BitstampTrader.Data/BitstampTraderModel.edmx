@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BitstampTraderModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="MinMaxLog">
+          <Key>
+            <PropertyRef Name="Day" />
+          </Key>
+          <Property Name="Day" Type="date" Nullable="false" />
+          <Property Name="Minimum" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Maximum" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BuyAmount" Type="decimal" Precision="12" Scale="8" Nullable="false" />
+          <Property Name="BuyTimestamp" Type="datetime" />
+          <Property Name="BuyPrice" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="BuyValue" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="BuyFee" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="BuyId" Type="bigint" Nullable="false" />
+          <Property Name="SellAmount" Type="decimal" Precision="12" Scale="8" />
+          <Property Name="SellTimestamp" Type="datetime" />
+          <Property Name="SellPrice" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="SellValue" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="SellFee" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="SellId" Type="bigint" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="BitstampTraderModelStoreContainer">
+          <EntitySet Name="MinMaxLog" EntityType="Self.MinMaxLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BitstampTraderModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="MinMaxLog">
+          <Key>
+            <PropertyRef Name="Day" />
+          </Key>
+          <Property Name="Day" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Minimum" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Maximum" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Currency" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="BitstampTraderEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MinMaxLog" EntityType="Self.MinMaxLog" />
+          <EntitySet Name="Order" EntityType="BitstampTraderModel.Order" />
+        </EntityContainer>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BuyAmount" Type="Decimal" Nullable="false" Precision="12" Scale="8" />
+          <Property Name="BuyTimestamp" Type="DateTime" Precision="3" />
+          <Property Name="BuyPrice" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="BuyValue" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="BuyFee" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="BuyId" Type="Int64" Nullable="false" />
+          <Property Name="SellAmount" Type="Decimal" Precision="12" Scale="8" />
+          <Property Name="SellTimestamp" Type="DateTime" Precision="3" />
+          <Property Name="SellPrice" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="SellValue" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="SellFee" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="SellId" Type="Int64" />
+          <Property Name="Currency" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BitstampTraderModelStoreContainer" CdmEntityContainer="BitstampTraderEntities">
+          <EntitySetMapping Name="MinMaxLog">
+            <EntityTypeMapping TypeName="BitstampTraderModel.MinMaxLog">
+              <MappingFragment StoreEntitySet="MinMaxLog">
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Minimum" ColumnName="Minimum" />
+                <ScalarProperty Name="Maximum" ColumnName="Maximum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="BitstampTraderModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="SellId" ColumnName="SellId" />
+                <ScalarProperty Name="SellFee" ColumnName="SellFee" />
+                <ScalarProperty Name="SellValue" ColumnName="SellValue" />
+                <ScalarProperty Name="SellPrice" ColumnName="SellPrice" />
+                <ScalarProperty Name="SellTimestamp" ColumnName="SellTimestamp" />
+                <ScalarProperty Name="SellAmount" ColumnName="SellAmount" />
+                <ScalarProperty Name="BuyId" ColumnName="BuyId" />
+                <ScalarProperty Name="BuyFee" ColumnName="BuyFee" />
+                <ScalarProperty Name="BuyValue" ColumnName="BuyValue" />
+                <ScalarProperty Name="BuyPrice" ColumnName="BuyPrice" />
+                <ScalarProperty Name="BuyTimestamp" ColumnName="BuyTimestamp" />
+                <ScalarProperty Name="BuyAmount" ColumnName="BuyAmount" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

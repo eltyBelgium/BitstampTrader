@@ -1,0 +1,12 @@
+﻿<Application x:Class="BitstampTrader.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:BitstampTrader"
+             xmlns:viewModels="clr-namespace:BitstampTrader.ViewModels"
+             StartupUri="Views/Start.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <viewModels:ViewModelLocator x:Key="Locator"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
