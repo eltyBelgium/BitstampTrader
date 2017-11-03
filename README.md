@@ -1,5 +1,5 @@
 # BitstampTrader
-A simple trader made with C# in WPF. Uses Bitstamp API. 
+A simple trading bot made with C# in WPF. Uses Bitstamp API. 
 
 ## Requirements
   - Microsoft Sql server
